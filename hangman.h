@@ -54,3 +54,4 @@ void hangman(const char secret[]);
  * @return status code
  */
 int get_word(char secret[]);
+

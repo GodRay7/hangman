@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/stat.h>
 #include "hangman.h"
 
@@ -31,4 +32,38 @@ int get_word(char secret[]){
     fclose(fp);
 
     return 0;
+}
+
+int is_word_guessed(const char secret[], const char letters_guessed[]){
+    //code...
+    int secretLen = strlen(secret);
+    int lettersLen = strlen(letters_guessed);
+    int notFoundFlag;
+    for(int i = 0; i < secretLen; i++ ){
+        notFoundFlag = 1;
+        for(int j = 0; j < lettersLen; j++){
+            if(letters_guessed[j] == secret[i]){
+                notFoundFlag = 0;
+                break;
+            }
+        }
+        if(notFoundFlag){
+            return 0;
+        }
+    }
+    return 1;
+}
+void get_guessed_word(const char secret[], const char letters_guessed[], char guessed_word[]) {
+    int length = strlen(secret);
+    for (int i = 0; i < length; i++) {
+        int found = 0;
+        for (int j = 0; letters_guessed[j] != '\0'; j++) {
+            if (secret[i] == letters_guessed[j]) {
+                found = 1;
+                break;
+            }
+        }
+        guessed_word[i] = found ? secret[i] : '_';
+    }
+    guessed_word[length] = '\0';
 }
