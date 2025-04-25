@@ -8,8 +8,8 @@ int main () {
 
     char secret[11];
 
-    int result = get_word(secret);
-    if(result){
+    int resultWord = get_word(secret);
+    if(resultWord){
         return 1;
     }
     printf("%s\n", secret);
@@ -19,10 +19,9 @@ int main () {
     printf("%d\n",is_word_guessed("hello", "aeihoul"));
     // prints: 1
 
-    char result1[30];
-    get_guessed_word("container", "arpstxgoieyu", result1);
-    printf("%s\n", result1); 
-    
+    char result[30];
+    get_available_letters("arpstxgoieyu", result);
+    printf("%s", result);
 
 
     return 0;
