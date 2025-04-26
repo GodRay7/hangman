@@ -90,5 +90,54 @@ void get_available_letters(const char letters_guessed[], char available_letters[
 }
 
 void hangman(const char secret[]){
-    
+    int secretLen = strlen(secret);
+    int attemps = 8;
+    char letters_guessed[27] = "";
+    int letters_guessed_index;
+    char available_letters[27];
+    char input[255] = "", inputLen = 0;
+
+    printf("Welcome to the game, Hangman!\n");
+    printf("I am thinking of a word that is %i letters long.\n", secretLen);
+
+    while(attemps > 0 && !is_word_guessed(secret, letters_guessed)){
+        printf("-------------");
+        printf("You have %i guesses left.\n", attemps);
+        get_available_letters(letters_guessed, available_letters);
+        printf("Available letters: %s\n", available_letters);
+
+        printf("Please guess a letter: ");
+        
+        fgets(input, 255, stdin);
+        inputLen = strlen(input) - 1;
+        if(inputLen > 1){
+            //this is string
+        }else{
+            //this is char
+            //bad scenario:
+            //1)uppercase => lowercase
+            //2)anyother symbol => cancle
+            char symbol = input[0];
+            if(symbol >= 65 && symbol <= 90){
+                symbol += 32;
+            }
+            if(symbol <= 97 || symbol >= 122){
+                printf("Wrong symbol\n");
+                continue;
+            }
+            letters_guessed[letters_guessed_index] = symbol;
+            letters_guessed_index++;
+            // 1) определеить есть ли такой символ в слове 
+            // 2) если есть определить вводит ли его пользователь повторно: 
+            // 2.1) если да уведомить его и пропустить попытку 
+            // 2.2) если нет обновить слово 
+            // 3) если нет -уведомить его и снять попытку
+        }
+        printf("%s\n", input);
+
+
+
+
+        attemps--;
+    }
 }
