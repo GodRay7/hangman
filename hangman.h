@@ -55,3 +55,4 @@ void hangman(const char secret[]);
  */
 int get_word(char secret[]);
 
+int letter_in_word(const char secret[], char symbol);

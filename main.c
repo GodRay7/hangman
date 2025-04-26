@@ -10,18 +10,11 @@ int main () {
 
     int resultWord = get_word(secret);
     if(resultWord){
+        perror("Cannot get secret word for some reason");
         return 1;
     }
-    printf("%s\n", secret);
 
-    printf("%d\n",is_word_guessed("secret", "aeiou"));
-    // prints: 0
-    printf("%d\n",is_word_guessed("hello", "aeihoul"));
-    // prints: 1
-
-    char result[30];
-    get_available_letters("arpstxgoieyu", result);
-    printf("%s", result);
+    hangman(secret);
 
 
 
